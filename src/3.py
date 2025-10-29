@@ -46,6 +46,11 @@ store = Store()
 class Order:
   def __init__(self):
     self.items = {}
+  
+  def checkout(self):
+    return sum(
+      amount * product.get_price() for (product, amount) in self.items.items()
+      ) * (TAX / 100)
 
 
 class ShoppingCart:
@@ -79,11 +84,6 @@ class ShoppingCart:
       store.add_product(product, to_remove)
       self._items[product] = amount - to_remove
   
-  def checkout(self) -> int:
-    return sum(
-      amount * product.get_price() for (product, amount) in self._items.items()
-      ) * (TAX / 100)
-  
   def to_order(self):
     return Order(self._items)
   
@@ -107,10 +107,11 @@ class Customer:
     self.balance += amount
   
   def checkout(self):
-    total = self._shopping_cart.checkout()
+    order = self._shopping_cart.to_order()
+    total = order.checkout()
     if self.balance < total:
       print("Not enough money! Top up or remove some items from your cart.")
     else:
       balance -= total
-      orders += self._shopping_cart.to_order()
+      orders += order
       self._shopping_cart.clear()
