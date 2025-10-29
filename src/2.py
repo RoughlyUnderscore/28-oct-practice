@@ -55,7 +55,7 @@ print(car)
 print(bus)
 print(train)
 
-# or:
-print(car._info())
-print(bus._info())
-print(train._info())
+# or (disallowed as per visibility settings):
+# print(car._info())
+# print(bus._info())
+# print(train._info())

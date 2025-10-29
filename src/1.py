@@ -14,11 +14,11 @@ class Employee(ABC):
     coef (float): Employee's salary calculation coefficient.
   """
 
-  def __init__(self, salary, work_hrs, months_worked, coef):
+  def __init__(self, salary: float, work_hrs: int, months_worked: int, coef: float):
     """
     Initialize an employee.
 
-    Attributes:
+    Parameters:
       salary (float): Employee's base salary.
       work_hrs (int): Employee's daily work hour amount.
       months_worked (int): Employee's current amount of months worked at the company.
