@@ -31,9 +31,12 @@ class Employee(ABC):
   
 
   @abstractmethod
-  def calculate_salary(self) -> int:
+  def calculate_salary(self) -> float:
     """
     Calculate an employee's salary according to some algorithm.
+
+    Returns:
+      float: the total salary.
     """
     ...
 
